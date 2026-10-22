@@ -2,6 +2,17 @@
   QuestLingua — САЙТТЫҢ ҚҰРЫЛЫМЫ
 ==============================================================
 
+Сайттың мекенжайы:  https://questlingua.netlify.app/
+
+  • Сайт кез келген браузерде ашылады (Chrome, Edge, Firefox),
+    компьютерде де, телефонда да.
+  • Сайтты бір рет интернетпен ашса, кейін интернетсіз де жұмыс
+    істейді (сол браузерде).
+  • Тікелей сілтемелер:
+      https://questlingua.netlify.app/slide/6      — 6-слайд (демо)
+      https://questlingua.netlify.app/explore      — Explore Mode
+      https://questlingua.netlify.app/presenter    — баяндамашы терезесі
+
 Сайттың екі режимі бар:
   1) Presentation Mode — қорғауға арналған 10 слайд.
   2) Explore Mode — жюриге арналған толық ақпарат беттері.
