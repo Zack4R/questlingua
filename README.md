@@ -8,6 +8,8 @@ React + TypeScript + Vite + Tailwind CSS + React Router + Recharts + Lucide.
 
 ## Публикация на Netlify
 
+Сайт опубликован: **https://questlingua.netlify.app/**
+
 **Вариант 1 — через Git (рекомендуется).** Загрузите папку в репозиторий GitHub и подключите его в Netlify
 (Add new site → Import an existing project). Настройки сборки берутся из `netlify.toml`:
 команда `npm run build`, папка `dist`, Node 22.
