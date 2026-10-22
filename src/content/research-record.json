@@ -1,0 +1,5 @@
+{
+  "_readme": "Verified research record. Keep 'results' as null until real, verified pre/post scores exist. Sessions are listed in 'completedSessions' only after they have actually taken place. You can generate this file from Explore Mode → Results → Export record.",
+  "completedSessions": [],
+  "results": null
+}

@@ -1,0 +1,186 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Inter Variable', ui-sans-serif, sans-serif;
+
+  --color-navy-950: #040816;
+  --color-navy-900: #070d22;
+  --color-navy-850: #0a132e;
+  --color-navy-800: #0f1a38;
+  --color-navy-700: #16244a;
+  --color-navy-600: #1f315f;
+
+  --color-ink: #f3f6ff;
+  --color-muted: #b0bbdd;
+  --color-dim: #7d89b3;
+  --color-line: rgb(148 163 255 / 0.16);
+
+  --color-cyan-glow: #5ee7ff;
+  --color-violet-glow: #a297ff;
+  --color-mint-glow: #5eead4;
+  --color-amber-glow: #fcd34d;
+  --color-rose-glow: #fda4af;
+
+  /* chart series — validated for the navy surface (#0f1a38) */
+  --color-pre: #7a6ee3;
+  --color-post: #139cc2;
+
+  --animate-slide-next: slide-next 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-slide-prev: slide-prev 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade-in: fade-in 0.35s ease-out both;
+  --animate-pop: pop 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2.2s ease-out infinite;
+
+  @keyframes slide-next {
+    from { opacity: 0; transform: translateX(2.5rem); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+  @keyframes slide-prev {
+    from { opacity: 0; transform: translateX(-2.5rem); filter: blur(4px); }
+    to { opacity: 1; transform: none; filter: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: scale(0.94) translateY(0.5rem); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-0.6rem); }
+  }
+  @keyframes pulse-ring {
+    0% { opacity: 0.75; transform: scale(0.7); }
+    100% { opacity: 0; transform: scale(1.8); }
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(0.9rem); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Root sizing ───────────────────────────────────────────────────────────
+   Presentation mode scales all rem-based sizes with the viewport so the same
+   layout fills a 1280×720 projector and a 1920×1080 display identically.     */
+html {
+  font-size: 16px;
+  background: var(--color-navy-950);
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+@media (min-width: 1024px) {
+  html[data-mode='present'] {
+    font-size: clamp(11px, min(1.1vw, 1.95vh), 30px);
+  }
+  html[data-mode='explore'] {
+    font-size: clamp(15px, calc(0.42vw + 9px), 19px);
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--color-navy-950);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(94 231 255 / 0.3);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan-glow);
+  outline-offset: 2px;
+}
+
+/* ── Components ─────────────────────────────────────────────────────────── */
+@layer components {
+  .panel {
+    border-radius: 1.1rem;
+    border: 1px solid var(--color-line);
+    background: linear-gradient(180deg, rgb(19 31 66 / 0.72), rgb(10 19 46 / 0.72));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.05),
+      0 1.5rem 3rem -1.5rem rgb(0 0 0 / 0.6);
+    backdrop-filter: blur(10px);
+  }
+  .panel-quiet {
+    border-radius: 0.9rem;
+    border: 1px solid var(--color-line);
+    background: rgb(15 26 56 / 0.55);
+  }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-cyan-glow);
+  }
+  .text-gradient {
+    background: linear-gradient(100deg, #ffffff 10%, #bdf4ff 45%, #b7adff 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hairline-grid {
+    background-image:
+      linear-gradient(rgb(148 163 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(148 163 255 / 0.05) 1px, transparent 1px);
+    background-size: 3.5rem 3.5rem;
+  }
+  .stagger > * {
+    animation: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .stagger > *:nth-child(1) { animation-delay: 0.04s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.16s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.22s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.28s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.34s; }
+  .stagger > *:nth-child(7) { animation-delay: 0.4s; }
+  .stagger > *:nth-child(8) { animation-delay: 0.46s; }
+  .stagger > *:nth-child(n + 9) { animation-delay: 0.52s; }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(148 163 255 / 0.25) transparent;
+  }
+}
+
+/* Smooth movement of the explorer on the demo map */
+.map-traveller {
+  transition: transform 0.55s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ── Print (survey / observation templates from Explore Mode) ─────────── */
+@media print {
+  html, body { background: #fff !important; font-size: 11pt !important; }
+  * { color: #000 !important; text-shadow: none !important; box-shadow: none !important; }
+  .no-print { display: none !important; }
+  .panel, .panel-quiet { background: #fff !important; border-color: #999 !important; backdrop-filter: none !important; break-inside: avoid; }
+  [class*='border-white'], [class*='border-line'] { border-color: #888 !important; }
+  body[data-print-only] [data-instrument]:not(.print-target) { display: none !important; }
+  body[data-print-only] main header { display: none !important; }
+}

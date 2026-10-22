@@ -1,0 +1,23 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Single-page app: every route (/slide/4, /explore/rubric, /presenter …) is served by index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# The service worker must always be revalidated so new deploys reach the presentation laptop
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
