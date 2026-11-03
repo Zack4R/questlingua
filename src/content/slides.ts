@@ -118,7 +118,7 @@ export const slides: SlideMeta[] = [
     seconds: 40,
     notes: [
       'Only verified data are shown here.',
-      'If the slide says “not yet entered”, explain the current stage of the experiment honestly.',
+      'Play the “Сауалнама” video for the jury (Play button, or click the video and press Space; sound on).',
       'Any example chart is clearly marked as illustrative.',
     ],
   },
